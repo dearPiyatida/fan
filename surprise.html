@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise for You ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #ffd1ff);
+            background-size: 400% 400%;
+            animation: gradientBG 15s infinite ease;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: relative;
+            max-width: 600px;
+            margin: 20px;
+            overflow: hidden;
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        h1 {
+            color: #ff6f61;
+            font-size: 3.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        p {
+            font-size: 1.4rem;
+            color: #555;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .button {
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: 1.4rem;
+            color: white;
+            background: linear-gradient(45deg, #ff6f61, #ff8a7f);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 111, 97, 0.3);
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 111, 97, 0.4);
+        }
+
+        .hidden-message {
+            display: none;
+            margin-top: 30px;
+            color: #444;
+            font-size: 1.6rem;
+            line-height: 1.8;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .placeholder-image {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hearts" id="hearts"></div>
+        <h1>❤️ Surprise! ❤️</h1>
+        <p>I have a special message for you...</p>
+        <button class="button" onclick="showMessage()">Click to Reveal</button>
+        <div class="hidden-message" id="hiddenMessage">
+            <img src="https://github.com/dearPiyatida/surprise-for-fannn/blob/main/02b87cdb-1322-4d5f-ac8d-a4a5da64bdf7.jpg" alt="placeholder" class="placeholder-image">
+
+            <p>
+                🌹 วันนี้ทำอารายยยย เค้าว่างนิดหน่อย เลยอยากทำอันนี้ให้ เค้ารักเธอนะะะ 
+                ถึงแม้ช่วงนี้เราจะทะเลาะกันบ่อย แต่ก็อยากให้คิดว่า เป็นการทะเลาะเพื่อให้ทั้งสองคน
+                รู้จักกันมากยิ่งขึ้น ได้ปรับตัวเข้าหากันได้ดี เค้ารักเธอนะะะไออ้วนของเค้า จู้ปปๆๆ 🌹
+            </p>
+            <p>Thank you for being you. Love you! 🥰</p>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHeart() {
+            const hearts = document.getElementById('hearts');
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.innerHTML = '❤️';
+            hearts.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Create hearts periodically
+        setInterval(createHeart, 300);
+
+        function showMessage() {
+            const message = document.getElementById('hiddenMessage');
+            message.style.display = 'block';
+            
+            // Create extra hearts when message is revealed
+            for(let i = 0; i < 10; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
